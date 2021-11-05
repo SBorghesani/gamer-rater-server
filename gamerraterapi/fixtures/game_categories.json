@@ -1,0 +1,26 @@
+[
+    {
+        "model": "gamerraterapi.gamecategory",
+        "pk": 1,
+        "fields": {
+            "cat": 1,
+            "game": 1
+        }
+    },
+    {
+        "model": "gamerraterapi.gamecategory",
+        "pk": 2,
+        "fields": {
+            "cat": 2,
+            "game": 2
+        }  
+    },
+    {
+        "model": "gamerraterapi.gamecategory",
+        "pk": 3,
+        "fields": {
+            "cat": 6,
+            "game": 3
+        }
+    }
+]

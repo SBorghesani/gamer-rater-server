@@ -1,3 +1,4 @@
+from gamerraterapi.models import game_category
 from django.db import models
 
 class Game(models.Model):
@@ -8,3 +9,4 @@ class Game(models.Model):
     num_players = models.IntegerField()
     time_to_play = models.IntegerField()
     age_rec = models.IntegerField()
+    categories = models.ManyToManyField("Category", through="GameCategory", related_name="categories")

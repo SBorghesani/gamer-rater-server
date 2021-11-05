@@ -1,0 +1,41 @@
+[
+    {
+        "model": "gamerraterapi.game",
+        "pk": 1,
+        "fields": {
+            "title": "Risk",
+            "description": "Players try to conquer the world!",
+            "designer": "Some Guy",
+            "year_released": 1999,
+            "num_players": 5,
+            "time_to_play": 120,
+            "age_rec": 10
+        }
+    },
+    {
+        "model": "gamerraterapi.game",
+        "pk": 2,
+        "fields": {
+            "title": "Craps",
+            "description": "Lose money fast, but look cool doing it!",
+            "designer": "Las Vegas, probably",
+            "year_released": 1980,
+            "num_players": 4,
+            "time_to_play": 1,
+            "age_rec": 21
+        }
+    },
+    {
+        "model": "gamerraterapi.game",
+        "pk": 3,
+        "fields": {
+            "title": "L.A.R.P",
+            "description": "Cast Lightning! Cast Lightning!",
+            "designer": "Some Nerd",
+            "year_released": 2016,
+            "num_players": 12,
+            "time_to_play": 6,
+            "age_rec": 12
+        }
+    }
+]

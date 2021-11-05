@@ -1,1 +1,1 @@
-SELECT * FROM gamerraterapi_game
+SELECT * FROM game

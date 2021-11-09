@@ -1,6 +1,6 @@
 from django.db import models
 
 class Review(models.Model):
-    game = models.ForeignKey("Game", on_delete=models.CASCADE)
+    game = models.ForeignKey("Game", on_delete=models.CASCADE, related_name='reviews')
     player = models.ForeignKey("Player", on_delete=models.CASCADE)
-    entry = models.CharField(max_length=55)
+    review = models.CharField(max_length=55)

@@ -6,7 +6,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from gamerraterapi.models import Game, GameCategory, Player, game_category
+from gamerraterapi.models import Game, GameCategory, Player, Review
 
 
 class GameView(ViewSet):
@@ -20,7 +20,6 @@ class GameView(ViewSet):
         """
 
         # Uses the token passed in the `Authorization` header
-        player = Player.objects.get(user=request.auth.user)
 
         # Use the Django ORM to get the record from the database
         # whose `id` is what the client passed as the
@@ -130,7 +129,6 @@ class GameView(ViewSet):
         """
         # Get all game records from the database
         games = Game.objects.all()
-
         # Support filtering games by type
         #    http://localhost:8000/games?type=1
         #
@@ -143,9 +141,12 @@ class GameView(ViewSet):
             games, many=True, context={'request': request})
         return Response(serializer.data)
 
+class GameReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = ('id', 'game_id', 'player_id', 'review')
 
 class GameCategorySerializer(serializers.ModelSerializer):
-    # game_id = GameSerializer()
     class Meta: 
         model = GameCategory
         fields = ('id', 'cat_id', 'game_id')
@@ -157,8 +158,8 @@ class GameSerializer(serializers.ModelSerializer):
     Arguments:
         serializer type
     """
-    # game_category = GameCategorySerializer()
+    reviews = GameReviewSerializer(many=True)
     class Meta:
         model = Game
-        fields = ('id', 'title', 'description', 'designer', 'year_released', 'num_players', 'time_to_play', 'age_rec', "categories")
+        fields = ('id', 'title', 'description', 'designer', 'year_released', 'num_players', 'time_to_play', 'age_rec', "categories", 'reviews')
         depth = 1

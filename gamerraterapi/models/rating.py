@@ -1,6 +1,6 @@
 from django.db import models
 
 class Rating(models.Model):
-    game = models.ForeignKey("Game", on_delete=models.CASCADE)
+    game = models.ForeignKey("Game", on_delete=models.CASCADE, related_name='ratings')
     player = models.ForeignKey("Player", on_delete=models.CASCADE)
-    rating = models.CharField(max_length=55)
+    rating = models.IntegerField()

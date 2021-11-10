@@ -18,13 +18,14 @@ from django.conf.urls import include
 from django.urls import path
 from gamerraterapi.views import register_user, login_user
 from rest_framework import routers
-from gamerraterapi.views import CategoryView, GameView, GameCategoryView, ReviewView
+from gamerraterapi.views import CategoryView, GameView, GameCategoryView, ReviewView, RatingView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'categories', CategoryView, 'category')
 router.register(r'games', GameView, 'game')
 router.register(r'game_categories', GameCategoryView, 'game_category')
 router.register(r'reviews', ReviewView, 'review')
+router.register(r'ratings', RatingView, 'rating')
 
 
 urlpatterns = [

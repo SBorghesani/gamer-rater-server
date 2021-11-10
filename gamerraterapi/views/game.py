@@ -6,7 +6,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from gamerraterapi.models import Game, GameCategory, Player, Review
+from gamerraterapi.models import Game, GameCategory, Player, Review, Rating
 
 
 class GameView(ViewSet):
@@ -127,6 +127,7 @@ class GameView(ViewSet):
         Returns:
             Response -- JSON serialized list of games
         """
+
         # Get all game records from the database
         games = Game.objects.all()
         # Support filtering games by type
@@ -141,10 +142,16 @@ class GameView(ViewSet):
             games, many=True, context={'request': request})
         return Response(serializer.data)
 
+
 class GameReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = ('id', 'game_id', 'player_id', 'review')
+
+class GameRatingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Rating
+        fields = ('id', 'game_id', 'player_id', 'rating')
 
 class GameCategorySerializer(serializers.ModelSerializer):
     class Meta: 
@@ -158,8 +165,9 @@ class GameSerializer(serializers.ModelSerializer):
     Arguments:
         serializer type
     """
+    ratings = GameRatingSerializer
     reviews = GameReviewSerializer(many=True)
     class Meta:
         model = Game
-        fields = ('id', 'title', 'description', 'designer', 'year_released', 'num_players', 'time_to_play', 'age_rec', "categories", 'reviews')
+        fields = ('id', 'title', 'description', 'designer', 'year_released', 'num_players', 'time_to_play', 'age_rec', "categories", 'reviews', 'average_rating')
         depth = 1
